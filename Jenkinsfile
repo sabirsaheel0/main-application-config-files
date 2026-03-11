@@ -16,6 +16,7 @@ pipeline {
             steps {
                 sh 'git config --global user.email sabirsaheel17@gmail.com'
                 sh 'git config --global user.name sabirsaheel0'
+                sh 'git checkout main'
                 sh 'git add ./k8s/deployment.yaml'
                 sh "git commit -m'updated image tag to ${IMAGE_TAG}'"
                 withCredentials([usernamePassword(credentialsId: 'github', passwordVariable: 'password', usernameVariable: 'username')]) {
