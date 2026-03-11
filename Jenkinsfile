@@ -8,7 +8,7 @@ pipeline {
         stage('Update Image Tag') {
             steps {
                 sh 'cat ./k8s/deployment.yaml'
-                sh "sed -i 's/jenkinstest.*/jenkinstest:${IMAGE_TAG}/g ./k8s/deployment.yaml"
+                sh "sed -i 's/jenkinstest.*/jenkinstest:${IMAGE_TAG}/g' ./k8s/deployment.yaml"
                 sh 'cat ./k8s/deployment.yaml'
             }
         }
