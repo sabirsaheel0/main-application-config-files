@@ -12,8 +12,6 @@ pipeline {
                 sh 'cat ./k8s/deployment.yaml'
             }
         }
-    }
-    stages {
         stage('Push to github') {
             steps {
                 sh 'git config --global user.email sabirsaheel17@gmail.com'
@@ -21,7 +19,7 @@ pipeline {
                 sh 'git add ./k8s/deployment.yaml'
                 sh "git commit -m'updated image tag to ${IMAGE_TAG}'"
                 withCredentials([usernamePassword(credentialsId: 'github', passwordVariable: 'password', usernameVariable: 'username')]) {
-                    sh 'git push https://username:password@github.com/sabirsaheel0/main-application-config-files.git main'
+                    sh 'git push https://$username:$password@github.com/sabirsaheel0/main-application-config-files.git main'
                 }
             }
         }
