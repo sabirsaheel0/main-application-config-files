@@ -5,6 +5,13 @@ pipeline {
     }
 
     stages {
+        stage ('CLEANUP WORKSAPCE') {
+            steps{
+                script{
+                    cleanWs()
+                }
+            }
+        }
         stage('Update Image Tag') {
             steps {
                 sh 'cat ./k8s/deployment.yaml'
